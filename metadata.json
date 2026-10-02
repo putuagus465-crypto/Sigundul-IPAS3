@@ -1,0 +1,10 @@
+{
+  "name": "SiGundul-3loloantimur",
+  "description": "Game edukasi interaktif IPAS Kelas 3 SD materi Siklus Hidup dan Tumbuh Kembang Manusia berbasis QR Code.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
