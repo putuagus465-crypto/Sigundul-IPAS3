@@ -1,19 +1,19 @@
 import { LocationConfig, GameSettings, Question } from '../types/game';
 
 export const DEFAULT_LOCATIONS: LocationConfig[] = [
-  // --- POS 1: RUANG UKS / PENGUKURAN BADAN ---
+  // --- POS 1: GUDANG SEKOLAH ---
   {
     id: 'pos_1',
     code: 'POS 1',
-    name: 'Ruang UKS / Pengukuran Badan',
+    name: 'Gudang Sekolah',
     qrCode: 'LITERASI-POS-1',
-    hint: '🩺 Aku adalah ruangan tempat timbangan berat badan dan pengukur tinggi badan berada. Carilah kartu QR Code di dekat pintu masuk untuk mempelajari rahasia Pertumbuhan & Perkembangan Manusia!',
+    hint: '📦 Aku adalah ruangan tempat menyimpan peralatan berkebun, sapu, cangkul, dan perlengkapan sekolah yang rapi. Carilah kartu QR Code di dekat pintuku untuk mempelajari rahasia Pertumbuhan & Perkembangan Manusia!',
     isFinal: false,
     isActive: true,
     iconName: 'BookOpen',
     story: {
       chapterNumber: 1,
-      title: 'Pos 1: Rahasia Tumbuh & Kembang Tubuh Manusia',
+      title: 'Pos 1 (Gudang Sekolah): Rahasia Tumbuh & Kembang Tubuh Manusia',
       subtitle: 'Membedakan konsep pertumbuhan fisik dan perkembangan kemampuan pada manusia',
       imageCaption: 'Ilustrasi Mengukur Pertumbuhan & Perkembangan: Siswa kelas 3 SD mengukur tinggi badan dengan meteran dan menimbang berat badan, membandingkan diri saat masih bayi dan sekarang.',
       visualHighlights: [
@@ -41,19 +41,19 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     },
   },
 
-  // --- POS 2: TAMAN BERMAIN / POJOK BALITA ---
+  // --- POS 2: DI BAWAH POHON JAMBU ---
   {
     id: 'pos_2',
     code: 'POS 2',
-    name: 'Taman Bermain / Pojok Balita',
+    name: 'Di Bawah Pohon Jambu',
     qrCode: 'LITERASI-POS-2',
-    hint: '🍼 Aku adalah tempat yang ceria di dekat taman sekolah tempat adik-adik kecil berlatih melangkah dan bermain. Pindai kartu QR Code di pos ini untuk membuka kisah Awal Kehidupan Manusia!',
+    hint: '🍐 Aku adalah pohon berdaun rimbun di halaman sekolah, buahku manis dan segar serta sering dipetik warga sekolah. Temukan kartu QR Code tepat di bawah keteduhanku untuk membuka Pos 2: Awal Mula Kehidupan (Masa Bayi & Balita)!',
     isFinal: false,
     isActive: true,
     iconName: 'Sparkles',
     story: {
       chapterNumber: 2,
-      title: 'Pos 2: Awal Mula Kehidupan (Masa Bayi & Balita)',
+      title: 'Pos 2 (Di Bawah Pohon Jambu): Awal Mula Kehidupan (Masa Bayi & Balita)',
       subtitle: 'Mengenal ciri-ciri bayi 0-1 tahun dan balita 1-5 tahun',
       imageCaption: 'Ilustrasi Bayi & Balita: Bayi minum ASI dan merangkak, serta balita yang mulai belajar melangkah, gigi susu mulai tumbuh, dan bermain balok susun.',
       visualHighlights: [
@@ -81,19 +81,19 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     },
   },
 
-  // --- POS 3: PERPUSTAKAAN / POJOK BACA ---
+  // --- POS 3: DI BAWAH POHON CEMPAKA ---
   {
     id: 'pos_3',
     code: 'POS 3',
-    name: 'Perpustakaan / Pojok Baca',
+    name: 'Di Bawah Pohon Cempaka',
     qrCode: 'LITERASI-POS-3',
-    hint: '📚 Aku adalah tempat berderet buku-buku ilmu pengetahuan tempat siswa SD belajar dan membaca cerita. Temukan kartu QR Code di sini untuk mengungkap rahasia Masa Anak-Anak & Pubertas!',
+    hint: '🌼 Bungaku terkenal sangat harum semerbak, kelopaknya memanjang berwarna kuning atau putih indah, dan sering digunakan dalam sarana persembahyangan di Bali. Datanglah ke bawah keteduhanku untuk membuka Pos 3: Masa Anak-Anak & Menuju Remaja (Pubertas)!',
     isFinal: false,
     isActive: true,
     iconName: 'BookOpen',
     story: {
       chapterNumber: 3,
-      title: 'Pos 3: Masa Anak-Anak & Menuju Remaja (Pubertas)',
+      title: 'Pos 3 (Di Bawah Pohon Cempaka): Masa Anak-Anak & Menuju Remaja (Pubertas)',
       subtitle: 'Perubahan gigi tetap, lonjakan pertumbuhan, dan ciri-ciri masa pubertas',
       imageCaption: 'Ilustrasi Masa Anak & Remaja: Siswa SD dengan gigi tetap yang mulai tumbuh, serta remaja yang mengalami pubertas (suara membesar, jakun, dan pertumbuhan fisik yang pesat).',
       visualHighlights: [
@@ -121,19 +121,19 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     },
   },
 
-  // --- POS 4: RUANG GURU / LORONG SEJUK ---
+  // --- POS 4: DI LORONG PARKIR ---
   {
     id: 'pos_4',
     code: 'POS 4',
-    name: 'Ruang Guru / Lorong Sejuk',
+    name: 'Di Lorong Parkir',
     qrCode: 'LITERASI-POS-4',
-    hint: '👓 Tempat ini penuh wibawa tempat Bapak dan Ibu Guru yang bijak merencanakan pelajaran. Carilah kartu QR Code untuk mempelajari Masa Dewasa dan Lanjut Usia!',
+    hint: '🚲 Aku adalah area teduh tempat sepeda dan kendaraan berbaris rapi setiap pagi saat warga sekolah tiba. Temukan kartu QR Code di tempat ini untuk membuka Pos 4: Masa Dewasa & Masa Lanjut Usia (Lansia)!',
     isFinal: false,
     isActive: true,
     iconName: 'Crown',
     story: {
       chapterNumber: 4,
-      title: 'Pos 4: Masa Dewasa & Masa Lanjut Usia (Lansia)',
+      title: 'Pos 4 (Di Lorong Parkir): Masa Dewasa & Masa Lanjut Usia (Lansia)',
       subtitle: 'Pertumbuhan fisik terhenti, kematangan emosi, dan penurunan alami pada usia lanjut',
       imageCaption: 'Ilustrasi Dewasa & Lansia: Orang dewasa yang siap bekerja dan membimbing keluarga, serta kakek-nenek lansia berambut putih ramah yang disayangi cucu-cucunya.',
       visualHighlights: [
@@ -167,13 +167,13 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     code: 'POS 5 (FINAL)',
     name: 'Di Kelas',
     qrCode: 'LITERASI-POS-5',
-    hint: '🏫 Langkah terakhirmu menantimu di rumah kedua kita! Masuklah ke ruang kelas tempat papan tulis dan meja belajarmu berada. Pindai QR Code terakhir untuk menuntaskan misi!',
+    hint: '🏫 Langkah terakhirmu telah tiba! Kembalilah ke ruangan tempat papan tulis, meja belajar, dan Bapak/Ibu Guru menantimu setiap hari. Pindai QR Code terakhir di ruangan kelas untuk menuntaskan misi Pos 5: Rahasia Tumbuh Sehat, Kuat, & Cerdas!',
     isFinal: true,
     isActive: true,
     iconName: 'Crown',
     story: {
       chapterNumber: 5,
-      title: 'Pos 5: Rahasia Tumbuh Sehat, Kuat, & Cerdas',
+      title: 'Pos 5 (Di Kelas): Rahasia Tumbuh Sehat, Kuat, & Cerdas',
       subtitle: 'Makanan bergizi seimbang, tidur cukup, olahraga, dan pola hidup sehat',
       imageCaption: 'Ilustrasi Pola Hidup Sehat: Piring gizi seimbang (karbohidrat, lauk protein, sayur, buah, susu), anak tidur nyenyak 8-10 jam, serta anak berolahraga riang gembira.',
       visualHighlights: [

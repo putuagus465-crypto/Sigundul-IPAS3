@@ -55,8 +55,8 @@ export const StoryRetellingView: React.FC<StoryRetellingViewProps> = ({
     }
 
     const template =
-      `Di Pos 1 (Ruang UKS), manusia mengalami pertumbuhan fisik (tinggi dan berat bertambah yang bisa diukur dengan angka) serta perkembangan kemampuan fungsi tubuh (berbicara, berjalan, dan berpikir mandiri).\n\n` +
-      `Di Pos 2, Pos 3, dan Pos 4, tahapan siklus hidup manusia diawali dari bayi (0-1 tahun minum ASI dan menangis), balita (1-5 tahun gigi susu tumbuh dan belajar jalan), anak-anak (6-11 tahun gigi susu diganti gigi tetap), remaja (mengalami pubertas dengan ciri jakun/suara berat pada laki-laki dan menstruasi pada perempuan), dewasa (tinggi badan terhenti dan organ matang), hingga lanjut usia (lansia dengan rambut beruban dan kulit keriput).\n\n` +
+      `Di Pos 1 (Gudang Sekolah), manusia mengalami pertumbuhan fisik (tinggi dan berat bertambah yang bisa diukur dengan angka) serta perkembangan kemampuan fungsi tubuh (berbicara, berjalan, dan berpikir mandiri).\n\n` +
+      `Di Pos 2 (Pohon Jambu), Pos 3 (Pohon Cempaka), dan Pos 4 (Lorong Parkir), tahapan siklus hidup manusia diawali dari bayi (0-1 tahun minum ASI dan menangis), balita (1-5 tahun gigi susu tumbuh dan belajar jalan), anak-anak (6-11 tahun gigi susu diganti gigi tetap), remaja (mengalami pubertas dengan ciri jakun/suara berat pada laki-laki dan menstruasi pada perempuan), dewasa (tinggi badan terhenti dan organ matang), hingga lanjut usia (lansia dengan rambut beruban dan kulit keriput).\n\n` +
       `Di Pos 5 (Di Kelas), pertumbuhan dan perkembangan manusia sangat dipengaruhi oleh makanan bergizi seimbang (protein zat pembangun tubuh, karbohidrat sumber energi, vitamin-mineral), tidur cukup 8-10 jam untuk pembentukan hormon pertumbuhan, olahraga teratur, serta menjaga kebersihan diri.`;
     setText(template);
   };

@@ -190,10 +190,10 @@ export const AdventureDashboard: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* Randomized Route Progression Bar (Pos 1-4 Randomized, Pos 5 Final) */}
+      {/* Sequential Route Progression Bar (Pos 1 to Pos 5) */}
       <div className="bg-white/90 rounded-2xl p-2.5 sm:p-3 border-2 border-amber-200 shadow-xs">
         <div className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between gap-2">
-          <span className="truncate">Rute Pos Kelompok (Pos 1–4 Acak)</span>
+          <span className="truncate">Rute Pos Berurutan (Pos 1 ➔ Pos 5)</span>
           <span className="text-[11px] text-amber-700 font-extrabold shrink-0">
             {session.currentPosIndex === 4
               ? 'Tahap 5: Pos 5 (Final)'
@@ -231,20 +231,12 @@ export const AdventureDashboard: React.FC<Props> = ({
                   ) : (
                     <Lock className="w-3.5 h-3.5" />
                   )}
-                  <span className="hidden sm:inline">
-                    {isFinalPos
-                      ? 'Pos 5 (Final)'
-                      : isCompleted || isCurrent
-                      ? revealedCode
-                      : `Tahap ${idx + 1}`}
+                  <span>
+                    {isFinalPos ? 'Pos 5' : revealedCode}
                   </span>
                 </div>
-                <span className="text-[10px] sm:hidden font-bold mt-0.5">
-                  {isFinalPos
-                    ? 'Pos 5'
-                    : isCompleted || isCurrent
-                    ? revealedCode
-                    : `Acak ${idx + 1}`}
+                <span className="text-[9px] font-bold mt-0.5 truncate max-w-full">
+                  {locObj?.name ? locObj.name.split(' ')[0] : `Pos ${idx + 1}`}
                 </span>
               </div>
             );

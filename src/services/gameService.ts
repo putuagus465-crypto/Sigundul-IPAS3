@@ -14,11 +14,11 @@ import {
   DEFAULT_QUESTIONS,
 } from '../data/defaultData';
 
-const LOCAL_SESSION_KEY = 'sigundul_ipas_v1_session';
-const LOCAL_SETTINGS_KEY = 'sigundul_ipas_v1_settings';
-const LOCAL_LOCATIONS_KEY = 'sigundul_ipas_v1_locations';
-const LOCAL_QUESTIONS_KEY = 'sigundul_ipas_v1_questions';
-const LOCAL_LEADERBOARD_KEY = 'sigundul_ipas_v1_leaderboard';
+const LOCAL_SESSION_KEY = 'sigundul_ipas_v2_session';
+const LOCAL_SETTINGS_KEY = 'sigundul_ipas_v2_settings';
+const LOCAL_LOCATIONS_KEY = 'sigundul_ipas_v2_locations';
+const LOCAL_QUESTIONS_KEY = 'sigundul_ipas_v2_questions';
+const LOCAL_LEADERBOARD_KEY = 'sigundul_ipas_v2_leaderboard';
 
 // Helper to shuffle array
 function shuffleArray<T>(array: T[]): T[] {
@@ -253,15 +253,10 @@ class GameService {
     const locations = await this.getLocations();
     const settings = await this.getSettings();
 
-    // Randomize Pos 1 to Pos 4 per device/group, keeping Pos 5 fixed as the Final Pos
+    // Sequential route from Pos 1 to Pos 5 to match exact chapters and descriptions
     const activeLocs = locations.filter(l => l.isActive);
-    const nonFinalLocs = shuffleArray(
-      activeLocs.filter(l => !l.isFinal)
-    );
-    const finalLocs = activeLocs
-      .filter(l => l.isFinal)
-      .sort((a, b) => a.story.chapterNumber - b.story.chapterNumber);
-    const route = [...nonFinalLocs, ...finalLocs].map(l => l.id);
+    const sortedLocs = [...activeLocs].sort((a, b) => a.story.chapterNumber - b.story.chapterNumber);
+    const route = sortedLocs.map(l => l.id);
 
     const gameId = `LITERASI-${Date.now().toString().slice(-6)}-${Math.floor(100 + Math.random() * 900)}`;
     const posProgress: GameSession['posProgress'] = {};
