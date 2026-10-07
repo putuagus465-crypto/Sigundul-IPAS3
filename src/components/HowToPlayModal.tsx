@@ -20,7 +20,7 @@ export const HowToPlayModal: React.FC<Props> = ({ isOpen, onClose }) => {
     {
       step: '2',
       title: 'Rute Berurutan dari Pos 1 ke Pos 5',
-      desc: 'Petualangan dimulai berurutan dari Pos 1 (Gudang Sekolah), Pos 2 (Pohon Jambu), Pos 3 (Pohon Cempaka), Pos 4 (Lorong Parkir), hingga Pos 5 (Di Kelas). Ikuti petunjuk deskripsi tempat di layar untuk menemukan setiap pos!',
+      desc: 'Petualangan dimulai berurutan dari Pos 1, Pos 2, Pos 3, Pos 4, hingga Pos 5. Ikuti petunjuk deskripsi tempat di layar untuk menemukan setiap pos!',
       icon: '🧭',
     },
     {

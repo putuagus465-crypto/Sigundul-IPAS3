@@ -199,7 +199,7 @@ export const StudentHome: React.FC<Props> = ({
           🌱 Rute 5 Pos Siklus Hidup &amp; Tumbuh Kembang Manusia (Aktif 24 Jam):
         </span>
         <p className="text-[11px] sm:text-xs font-semibold text-slate-700 leading-relaxed">
-          <strong>Pos 1 (Pohon Jambu):</strong> Tumbuh &amp; Kembang &bull; <strong>Pos 2 (Kopdes):</strong> Bayi &amp; Balita &bull; <strong>Pos 3 (Perpustakaan):</strong> Anak &amp; Remaja &bull; <strong>Pos 4 (Kantin):</strong> Dewasa &amp; Lansia &bull; <strong>Pos 5 (Guru Kelas):</strong> Pola Hidup Sehat
+          <strong>Pos 1:</strong> Tumbuh &amp; Kembang &bull; <strong>Pos 2:</strong> Bayi &amp; Balita &bull; <strong>Pos 3:</strong> Anak &amp; Remaja &bull; <strong>Pos 4:</strong> Dewasa &amp; Lansia &bull; <strong>Pos 5:</strong> Pola Hidup Sehat
         </p>
       </div>
     </div>

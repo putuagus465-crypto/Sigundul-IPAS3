@@ -1,11 +1,11 @@
 import { LocationConfig, GameSettings, Question } from '../types/game';
 
 export const DEFAULT_LOCATIONS: LocationConfig[] = [
-  // --- POS 1: POHON JAMBU ---
+  // --- POS 1 ---
   {
     id: 'pos_1',
     code: 'POS 1',
-    name: 'Pohon Jambu',
+    name: 'Pos 1',
     qrCode: 'LITERASI-POS-1',
     hint: '🍐 Aku adalah pohon berdaun rimbun di halaman sekolah, buahku manis dan segar serta sering dibuat rujak. Carilah kartu QR Code di bawah keteduhanku untuk membuka Pos 1!',
     isFinal: false,
@@ -13,7 +13,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     iconName: 'Trees',
     story: {
       chapterNumber: 1,
-      title: 'Pos 1 (Pohon Jambu): Tumbuh & Kembang Manusia',
+      title: 'Pos 1: Tumbuh & Kembang Manusia',
       subtitle: 'Perbedaan pertumbuhan fisik dan perkembangan kemampuan pada manusia',
       imageCaption: 'Ilustrasi Pertumbuhan & Perkembangan: Siswa kelas 3 SD mengukur tinggi badan dengan meteran dan menimbang berat badan.',
       visualHighlights: [
@@ -27,7 +27,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
         'PERKEMBANGAN (KEMBANG) adalah meningkatnya kemampuan dan keterampilan fungsi tubuh (bersifat kualitatif, tidak diukur angka). Contohnya dahulu saat bayi hanya bisa menangis, sekarang sudah bisa berbicara lancar, membaca buku, serta terampil mengikat tali sepatu dan menyisir rambut sendiri karena kemampuan motorik dan kemandiriannya meningkat.',
         'Kesimpulannya: pertumbuhan berkaitan dengan ukuran fisik tubuh yang membesar, sedangkan perkembangan berkaitan dengan kemampuan dan keterampilan tubuh yang semakin matang dan mandiri.',
       ],
-      summaryClue: 'Pos 1 (Pohon Jambu): Pertumbuhan adalah bertambahnya ukuran fisik (tinggi & berat) yang diukur dengan meteran dan timbangan. Perkembangan adalah meningkatnya kemampuan gerak, bicara, dan kemandirian.',
+      summaryClue: 'Pos 1: Pertumbuhan adalah bertambahnya ukuran fisik (tinggi & berat) yang diukur dengan meteran dan timbangan. Perkembangan adalah meningkatnya kemampuan gerak, bicara, dan kemandirian.',
       glossary: [
         { word: 'Pertumbuhan', meaning: 'Bertambahnya ukuran fisik tubuh (tinggi dan berat badan) yang dapat diukur dengan angka' },
         { word: 'Perkembangan', meaning: 'Meningkatnya kemampuan, keterampilan gerak (motorik), berbicara, dan kemandirian' },
@@ -36,19 +36,19 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     },
   },
 
-  // --- POS 2: KOPDES ---
+  // --- POS 2 ---
   {
     id: 'pos_2',
     code: 'POS 2',
-    name: 'Kopdes',
+    name: 'Pos 2',
     qrCode: 'LITERASI-POS-2',
-    hint: '🏪 Aku adalah tempat koperasi desa (Kopdes) yang menyediakan berbagai kebutuhan warga di sekitar kita. Temukan kartu QR Code di tempat ini untuk membuka Pos 2!',
+    hint: '🏪 Aku adalah tempat koperasi desa yang menyediakan berbagai kebutuhan warga di sekitar kita. Temukan kartu QR Code di tempat ini untuk membuka Pos 2!',
     isFinal: false,
     isActive: true,
     iconName: 'Sparkles',
     story: {
       chapterNumber: 2,
-      title: 'Pos 2 (Kopdes): Masa Bayi & Balita',
+      title: 'Pos 2: Masa Bayi & Balita',
       subtitle: 'Mengenal ciri-ciri masa bayi (0–1 tahun) dan balita (1–5 tahun)',
       imageCaption: 'Ilustrasi Bayi & Balita: Bayi minum ASI dan belajar merangkak, serta balita yang tumbuh gigi susu dan belajar berjalan.',
       visualHighlights: [
@@ -62,7 +62,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
         'Tahap berikutnya adalah masa BALITA (Bawah Lima Tahun, usia 1–5 tahun). Pada masa ini tumbuh gigi pertama yang disebut GIGI SUSU (berjumlah 20 buah) untuk mengunyah makanan, serta anak mulai lancar berjalan, berlari, dan berbicara.',
         'Setiap bulan, bayi dan balita dibawa secara rutin ke POSYANDU atau Puskesmas untuk memantau tumbuh kembang (berat dan tinggi badan) serta mendapatkan imunisasi pencegah penyakit.',
       ],
-      summaryClue: 'Pos 2 (Kopdes): Bayi (0–1 tahun) minum ASI dan menangis untuk berkomunikasi. Urutan gerak: tengkurap-duduk-merangkak-berdiri-berjalan. Balita (1–5 tahun) tumbuh gigi susu dan dipantau di Posyandu.',
+      summaryClue: 'Pos 2: Bayi (0–1 tahun) minum ASI dan menangis untuk berkomunikasi. Urutan gerak: tengkurap-duduk-merangkak-berdiri-berjalan. Balita (1–5 tahun) tumbuh gigi susu dan dipantau di Posyandu.',
       glossary: [
         { word: 'ASI', meaning: 'Air Susu Ibu, makanan terbaik bayi yang mengandung gizi lengkap dan kekebalan tubuh' },
         { word: 'Gigi Susu', meaning: 'Gigi pertama yang tumbuh pada masa bayi dan balita berjumlah 20 buah' },
@@ -71,11 +71,11 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     },
   },
 
-  // --- POS 3: PERPUSTAKAAN ---
+  // --- POS 3 ---
   {
     id: 'pos_3',
     code: 'POS 3',
-    name: 'Perpustakaan',
+    name: 'Pos 3',
     qrCode: 'LITERASI-POS-3',
     hint: '📚 Aku adalah ruangan tenang tempat berderet banyak buku cerita dan ilmu pengetahuan untuk dibaca siswa. Datanglah ke tempatku dan pindai QR Code Pos 3!',
     isFinal: false,
@@ -83,7 +83,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     iconName: 'BookOpen',
     story: {
       chapterNumber: 3,
-      title: 'Pos 3 (Perpustakaan): Masa Anak-Anak & Remaja (Pubertas)',
+      title: 'Pos 3: Masa Anak-Anak & Remaja (Pubertas)',
       subtitle: 'Pergantian gigi tetap dan ciri-ciri masa pubertas remaja',
       imageCaption: 'Ilustrasi Masa Anak & Remaja: Siswa SD dengan gigi tetap serta remaja yang mengalami masa pubertas.',
       visualHighlights: [
@@ -97,7 +97,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
         'Ciri perubahan fisik pubertas pada anak LAKI-LAKI adalah suara membesar/berat, tumbuh jakun di leher depan, dan dada membidang. Sedangkan pada anak PEREMPUAN ditandai dengan mulai mengalami menstruasi (haid), suara lebih halus, dan pinggul membesar.',
         'Saat memasuki masa pubertas, sikap bijak yang harus dilakukan adalah menjaga kebersihan tubuh dengan baik, rajin beribadah, dan terbuka bercerita kepada orang tua.',
       ],
-      summaryClue: 'Pos 3 (Perpustakaan): Anak-anak (6–11 th) gigi susu diganti gigi tetap. Remaja (12–18 th) mengalami pubertas: laki-laki tumbuh jakun & suara berat, perempuan mengalami menstruasi.',
+      summaryClue: 'Pos 3: Anak-anak (6–11 th) gigi susu diganti gigi tetap. Remaja (12–18 th) mengalami pubertas: laki-laki tumbuh jakun & suara berat, perempuan mengalami menstruasi.',
       glossary: [
         { word: 'Gigi Tetap', meaning: 'Gigi permanen pengganti gigi susu yang berjumlah 32 buah pada orang dewasa' },
         { word: 'Pubertas', meaning: 'Masa peralihan dari anak-anak menuju dewasa disertai pematangan organ reproduksi' },
@@ -106,11 +106,11 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     },
   },
 
-  // --- POS 4: KANTIN ---
+  // --- POS 4 ---
   {
     id: 'pos_4',
     code: 'POS 4',
-    name: 'Kantin',
+    name: 'Pos 4',
     qrCode: 'LITERASI-POS-4',
     hint: '🍽️ Aku adalah tempat favorit siswa membeli makanan dan minuman lezat saat jam istirahat sekolah. Temukan kartu QR Code di tempat ini untuk membuka Pos 4!',
     isFinal: false,
@@ -118,7 +118,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     iconName: 'Crown',
     story: {
       chapterNumber: 4,
-      title: 'Pos 4 (Kantin): Masa Dewasa & Lanjut Usia (Lansia)',
+      title: 'Pos 4: Masa Dewasa & Lanjut Usia (Lansia)',
       subtitle: 'Urutan siklus hidup, masa dewasa, dan ciri-ciri masa lansia',
       imageCaption: 'Ilustrasi Dewasa & Lansia: Orang dewasa bekerja dan berkeluarga, serta kakek-nenek lansia berambut putih yang disayangi cucu.',
       visualHighlights: [
@@ -132,7 +132,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
         'Tahap akhir adalah masa LANJUT USIA (Lansia, di atas 60 tahun) seperti kakek dan nenek. Ciri fisik lansia yaitu rambut memutih (beruban), kulit berkerut (keriput), serta fungsi mata, otot, dan kekuatan fisik mengalami penurunan alami sehingga sering memakai kacamata dan berjalan lebih lambat.',
         'Terhadap kakek, nenek, dan orang lanjut usia, kita wajib bersikap sopan, menghormati, dan bersabar membantu mereka dengan penuh kasih sayang.',
       ],
-      summaryClue: 'Pos 4 (Kantin): Urutan siklus hidup: Bayi-Balita-Anak-Remaja-Dewasa-Lansia. Masa dewasa tinggi badan terhenti. Masa lansia rambut beruban, kulit keriput, dan fisik menurun alami.',
+      summaryClue: 'Pos 4: Urutan siklus hidup: Bayi-Balita-Anak-Remaja-Dewasa-Lansia. Masa dewasa tinggi badan terhenti. Masa lansia rambut beruban, kulit keriput, dan fisik menurun alami.',
       glossary: [
         { word: 'Masa Dewasa', meaning: 'Tahap ketika pertumbuhan tinggi badan sudah berhenti dan organ tubuh matang sempurna' },
         { word: 'Lansia', meaning: 'Lanjut Usia (>60 tahun), tahap akhir siklus hidup dengan penurunan fungsi fisik alami' },
@@ -141,19 +141,19 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
     },
   },
 
-  // --- POS 5 (FINAL): GURU KELAS ---
+  // --- POS 5 (FINAL) ---
   {
     id: 'pos_5',
     code: 'POS 5 (FINAL)',
-    name: 'Guru Kelas',
+    name: 'Pos 5',
     qrCode: 'LITERASI-POS-5',
-    hint: '👩‍🏫 Langkah terakhirmu telah tiba! Datanglah menghadap Bapak/Ibu Guru Kelas di ruang kelasmu. Pindai QR Code terakhir di dekat Guru Kelas untuk menuntaskan misi Pos 5!',
+    hint: '👩‍🏫 Langkah terakhirmu telah tiba! Datanglah menghadap Bapak/Ibu Guru di ruang kelasmu. Pindai QR Code terakhir untuk menuntaskan misi Pos 5!',
     isFinal: true,
     isActive: true,
     iconName: 'Crown',
     story: {
       chapterNumber: 5,
-      title: 'Pos 5 (Guru Kelas): Rahasia Tumbuh Sehat & Kuat',
+      title: 'Pos 5: Rahasia Tumbuh Sehat & Kuat',
       subtitle: 'Makanan bergizi seimbang, tidur cukup, olahraga, dan pola hidup sehat',
       imageCaption: 'Ilustrasi Pola Hidup Sehat: Makanan bergizi seimbang (karbohidrat, protein, sayur, buah), tidur 8–10 jam, dan rajin berolahraga.',
       visualHighlights: [
@@ -167,7 +167,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
         'Rajin berolahraga sangat penting karena memperkuat tulang dan otot serta melancarkan peredaran darah, sehingga tubuh bugar dan tidak mudah sakit dibanding hanya bermain HP seharian.',
         'Mari biasakan hidup sehat setiap hari: makan makanan bergizi seimbang, tidur cukup 8–10 jam, rajin berolahraga, dan menjaga kebersihan diri!',
       ],
-      summaryClue: 'Pos 5 (Guru Kelas): Karbohidrat sumber tenaga, protein zat pembangun tubuh, sayur-buah sumber vitamin/mineral. Anak SD wajib tidur 8–10 jam, rajin olahraga, dan menjaga kebersihan diri.',
+      summaryClue: 'Pos 5: Karbohidrat sumber tenaga, protein zat pembangun tubuh, sayur-buah sumber vitamin/mineral. Anak SD wajib tidur 8–10 jam, rajin olahraga, dan menjaga kebersihan diri.',
       glossary: [
         { word: 'Karbohidrat', meaning: 'Zat gizi sumber tenaga utama (contoh: nasi, jagung, kentang, roti)' },
         { word: 'Protein', meaning: 'Zat gizi pembangun sel tubuh dan otot (contoh: ikan, telur, ayam, tahu, tempe, susu)' },

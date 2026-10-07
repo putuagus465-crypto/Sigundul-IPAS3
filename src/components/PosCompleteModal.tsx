@@ -48,8 +48,7 @@ export const PosCompleteModal: React.FC<Props> = ({
           <div className="flex items-center gap-2 mb-2 text-amber-800 font-bold text-xs uppercase tracking-wider">
             <Compass className="w-4 h-4 text-amber-600 animate-spin-slow" />
             <span>
-              Tujuan Lokasi Berikutnya: {nextStation.code}
-              {nextStation.name ? ` (${nextStation.name})` : ''}
+              Tujuan Lokasi Berikutnya: POS {nextStation.posNumber}
             </span>
           </div>
 

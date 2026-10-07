@@ -159,7 +159,7 @@ export const AdventureDashboard: React.FC<Props> = ({
         <div className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between gap-2">
           <span className="truncate">Rute Petualangan 5 Pos</span>
           <span className="text-[11px] text-amber-700 font-extrabold shrink-0">
-            {`Tahap ${activePosNumber}/${activeTotalPos}: ${activeCode} (${currentLocConfig?.name || ''})`}
+            {`Tahap ${activePosNumber}/${activeTotalPos}: POS ${activePosNumber}`}
           </span>
         </div>
 
@@ -168,9 +168,7 @@ export const AdventureDashboard: React.FC<Props> = ({
             const isCompleted = idx < session.currentPosIndex;
             const isCurrent = idx === session.currentPosIndex;
             const isFinalPos = idx === 4;
-            const locObj = locations.find(l => l.id === locId);
-            const revealedCode = locObj?.code ? locObj.code.replace(' (FINAL)', '') : `Pos ${idx + 1}`;
-            const locName = locObj?.name || '';
+            const posLabel = `Pos ${idx + 1}`;
 
             let statusClass = 'bg-slate-100 border-slate-300 text-slate-400';
             if (isCompleted) {
@@ -195,11 +193,11 @@ export const AdventureDashboard: React.FC<Props> = ({
                     <Lock className="w-3.5 h-3.5" />
                   )}
                   <span className="hidden sm:inline">
-                    {`${revealedCode}: ${locName}`}
+                    {posLabel}
                   </span>
                 </div>
                 <span className="text-[10px] sm:hidden font-bold mt-0.5 leading-tight">
-                  {revealedCode}
+                  {posLabel}
                 </span>
               </div>
             );
@@ -216,7 +214,7 @@ export const AdventureDashboard: React.FC<Props> = ({
                 <span className="p-2 sm:p-2.5 bg-white/20 rounded-2xl text-xl sm:text-2xl shrink-0">🧭</span>
                 <div>
                   <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-amber-200 block">
-                    TAHAP KE-{activePosNumber} DARI {activeTotalPos} &bull; TUJUAN: {activeCode} ({currentLocConfig?.name || ''})
+                    TAHAP KE-{activePosNumber} DARI {activeTotalPos} &bull; TUJUAN: POS {activePosNumber}
                   </span>
                   <h3 className="text-lg sm:text-2xl font-black font-display tracking-wide leading-tight">
                     {activeTitle}
@@ -235,7 +233,7 @@ export const AdventureDashboard: React.FC<Props> = ({
             <div className="bg-white/95 text-slate-800 rounded-2xl p-3.5 sm:p-4 shadow-inner space-y-2 border-2 border-amber-300">
               <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800 uppercase tracking-wider">
                 <Compass className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Deskripsi Petunjuk Lokasi {activeCode} ({currentLocConfig?.name || ''}):</span>
+                <span>Deskripsi Petunjuk Lokasi POS {activePosNumber}:</span>
               </div>
 
               <p className="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed italic bg-amber-50/70 p-3 rounded-xl border border-amber-200">
@@ -259,7 +257,7 @@ export const AdventureDashboard: React.FC<Props> = ({
               className="w-full py-3.5 sm:py-4 bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500 text-amber-950 font-black text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all active:scale-98 flex items-center justify-center gap-2.5 uppercase tracking-wide font-display cursor-pointer"
             >
               <QrCode className="w-5 h-5 sm:w-6 sm:h-6 text-amber-950 shrink-0" />
-              <span>SCAN QR CODE {activeCode}</span>
+              <span>SCAN QR CODE POS {activePosNumber}</span>
             </button>
           </div>
 
@@ -273,7 +271,7 @@ export const AdventureDashboard: React.FC<Props> = ({
               className="w-full py-3.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-amber-950 font-black text-sm rounded-2xl shadow-lg border-2 border-amber-600 flex items-center justify-center gap-2 uppercase tracking-wide font-display active:scale-98 cursor-pointer"
             >
               <QrCode className="w-5 h-5 text-amber-950 shrink-0" />
-              <span>SCAN QR CODE {activeCode}</span>
+              <span>SCAN QR CODE POS {activePosNumber}</span>
             </button>
           </div>
         </>
