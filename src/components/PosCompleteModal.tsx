@@ -47,7 +47,10 @@ export const PosCompleteModal: React.FC<Props> = ({
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-300 rounded-2xl p-4 text-left shadow-inner mb-6">
           <div className="flex items-center gap-2 mb-2 text-amber-800 font-bold text-xs uppercase tracking-wider">
             <Compass className="w-4 h-4 text-amber-600 animate-spin-slow" />
-            <span>Deskripsi Lokasi Berikutnya ({nextStation.code}):</span>
+            <span>
+              Tujuan Lokasi Berikutnya: {nextStation.code}
+              {nextStation.name ? ` (${nextStation.name})` : ''}
+            </span>
           </div>
 
           <div className="bg-white/90 p-3.5 rounded-xl border border-amber-200 text-slate-800 text-sm font-medium leading-relaxed italic shadow-2xs">

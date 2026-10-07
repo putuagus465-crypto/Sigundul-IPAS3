@@ -48,49 +48,12 @@ export const AdventureDashboard: React.FC<Props> = ({
   onOpenHowToPlay,
   onTimeout,
 }) => {
-  const [secondsRemaining, setSecondsRemaining] = useState<number | null>(() => {
-    if (settings.durationMinutes <= 0) return null;
-    const elapsedSeconds = Math.floor((Date.now() - session.startTime) / 1000);
-    const totalSeconds = settings.durationMinutes * 60;
-    return Math.max(0, totalSeconds - elapsedSeconds);
-  });
-
   const [soundEnabled, setSoundEnabled] = useState(sounds.enabled);
-
-  // Timer countdown
-  useEffect(() => {
-    if (secondsRemaining === null) return;
-    if (secondsRemaining <= 0) {
-      onTimeout();
-      return;
-    }
-
-    const interval = setInterval(() => {
-      setSecondsRemaining((prev) => {
-        if (prev === null) return null;
-        if (prev <= 1) {
-          clearInterval(interval);
-          onTimeout();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [secondsRemaining, onTimeout]);
 
   const toggleSound = () => {
     sounds.enabled = !sounds.enabled;
     setSoundEnabled(sounds.enabled);
     if (sounds.enabled) sounds.playClick();
-  };
-
-  const formatTimer = (totalSecs: number | null) => {
-    if (totalSecs === null) return '∞ Bebas';
-    const m = Math.floor(totalSecs / 60);
-    const s = totalSecs % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
   const currentLocId = session.route[session.currentPosIndex];
@@ -166,19 +129,13 @@ export const AdventureDashboard: React.FC<Props> = ({
             </div>
           </div>
 
-          {/* Timer */}
-          <div
-            className={`flex items-center justify-center sm:justify-start gap-1.5 px-2.5 py-1.5 rounded-xl border ${
-              secondsRemaining !== null && secondsRemaining < 300
-                ? 'bg-rose-50 border-rose-300 text-rose-700 animate-pulse'
-                : 'bg-blue-50 border-blue-200 text-blue-900'
-            }`}
-          >
+          {/* Timer / 24 Jam */}
+          <div className="flex items-center justify-center sm:justify-start gap-1.5 px-2.5 py-1.5 rounded-xl border bg-blue-50 border-blue-200 text-blue-900">
             <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
             <div>
               <div className="text-[9px] font-bold uppercase leading-none">Waktu</div>
-              <div className="text-xs sm:text-sm font-black font-mono tabular-nums leading-tight">
-                {formatTimer(secondsRemaining)}
+              <div className="text-xs sm:text-sm font-black tabular-nums leading-tight">
+                24 Jam
               </div>
             </div>
           </div>
@@ -200,11 +157,9 @@ export const AdventureDashboard: React.FC<Props> = ({
       {/* Route Progression Bar */}
       <div className="bg-white/90 rounded-2xl p-2.5 sm:p-3 border-2 border-amber-200 shadow-xs">
         <div className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between gap-2">
-          <span className="truncate">Rute Pos Kelompok (Pos 1–4 Acak)</span>
+          <span className="truncate">Rute Petualangan 5 Pos</span>
           <span className="text-[11px] text-amber-700 font-extrabold shrink-0">
-            {session.currentPosIndex === 4
-              ? 'Tahap 5: Pos 5 (Final)'
-              : `Tahap ${activePosNumber}/${activeTotalPos}: Cari ${activeCode}`}
+            {`Tahap ${activePosNumber}/${activeTotalPos}: ${activeCode} (${currentLocConfig?.name || ''})`}
           </span>
         </div>
 
@@ -215,6 +170,7 @@ export const AdventureDashboard: React.FC<Props> = ({
             const isFinalPos = idx === 4;
             const locObj = locations.find(l => l.id === locId);
             const revealedCode = locObj?.code ? locObj.code.replace(' (FINAL)', '') : `Pos ${idx + 1}`;
+            const locName = locObj?.name || '';
 
             let statusClass = 'bg-slate-100 border-slate-300 text-slate-400';
             if (isCompleted) {
@@ -239,19 +195,11 @@ export const AdventureDashboard: React.FC<Props> = ({
                     <Lock className="w-3.5 h-3.5" />
                   )}
                   <span className="hidden sm:inline">
-                    {isFinalPos
-                      ? 'Pos 5 (Final)'
-                      : isCompleted || isCurrent
-                      ? revealedCode
-                      : `Tahap ${idx + 1}`}
+                    {`${revealedCode}: ${locName}`}
                   </span>
                 </div>
-                <span className="text-[10px] sm:hidden font-bold mt-0.5">
-                  {isFinalPos
-                    ? 'Pos 5'
-                    : isCompleted || isCurrent
-                    ? revealedCode
-                    : `Tahap ${idx + 1}`}
+                <span className="text-[10px] sm:hidden font-bold mt-0.5 leading-tight">
+                  {revealedCode}
                 </span>
               </div>
             );
@@ -268,7 +216,7 @@ export const AdventureDashboard: React.FC<Props> = ({
                 <span className="p-2 sm:p-2.5 bg-white/20 rounded-2xl text-xl sm:text-2xl shrink-0">🧭</span>
                 <div>
                   <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-amber-200 block">
-                    TAHAP KE-{activePosNumber} DARI {activeTotalPos} &bull; CARI {activeCode}
+                    TAHAP KE-{activePosNumber} DARI {activeTotalPos} &bull; TUJUAN: {activeCode} ({currentLocConfig?.name || ''})
                   </span>
                   <h3 className="text-lg sm:text-2xl font-black font-display tracking-wide leading-tight">
                     {activeTitle}
@@ -287,7 +235,7 @@ export const AdventureDashboard: React.FC<Props> = ({
             <div className="bg-white/95 text-slate-800 rounded-2xl p-3.5 sm:p-4 shadow-inner space-y-2 border-2 border-amber-300">
               <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800 uppercase tracking-wider">
                 <Compass className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Deskripsi Petunjuk Lokasi {activeCode}:</span>
+                <span>Deskripsi Petunjuk Lokasi {activeCode} ({currentLocConfig?.name || ''}):</span>
               </div>
 
               <p className="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed italic bg-amber-50/70 p-3 rounded-xl border border-amber-200">

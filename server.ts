@@ -165,14 +165,11 @@ async function startServer() {
       return res.status(500).json({ success: false, error: 'Tidak ada pos cerita aktif.' });
     }
 
-    // Randomize Pos 1 to Pos 4 per device/group, keeping Pos 5 fixed as the Final Pos
-    const nonFinalLocs = shuffleArray(
-      activeLocs.filter(l => !l.isFinal)
+    // Sequential route from Pos 1 to Pos 5 so Pos number, location name, and description always match
+    const sortedLocs = [...activeLocs].sort(
+      (a, b) => a.story.chapterNumber - b.story.chapterNumber
     );
-    const finalLocs = activeLocs
-      .filter(l => l.isFinal)
-      .sort((a, b) => a.story.chapterNumber - b.story.chapterNumber);
-    const route = [...nonFinalLocs, ...finalLocs].map(l => l.id);
+    const route = sortedLocs.map(l => l.id);
 
     const gameId = `LITERASI-${Date.now().toString().slice(-6)}-${Math.floor(100 + Math.random() * 900)}`;
 

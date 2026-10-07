@@ -107,7 +107,17 @@ export default function App() {
           stored &&
           (stored.status === 'active' || stored.status === 'failed' || stored.status === 'timeout')
         ) {
+          // Ensure no timeout or screenLock blocks the user (24-hour free access)
+          if (stored.status === 'timeout') {
+            stored.status = 'active';
+          }
+          if (stored.screenLocked) {
+            stored.screenLocked = false;
+            stored.screenLockReason = undefined;
+          }
+          gameService.saveSession(stored);
           setSession(stored);
+
           const currentLocId = stored.route[stored.currentPosIndex];
           const locConfig = locs.find((l) => l.id === currentLocId);
 
@@ -116,7 +126,7 @@ export default function App() {
             totalPos: stored.route.length,
             id: currentLocId,
             code: locConfig?.code || `POS ${stored.currentPosIndex + 1}`,
-            name: sets.hintMode === 'easy' ? locConfig?.name : undefined,
+            name: locConfig?.name,
             hint: locConfig?.hint || '',
             isFinal: locConfig?.isFinal || false,
             story: locConfig?.story,
@@ -153,20 +163,6 @@ export default function App() {
   // Start new game
   const handleStartGame = async (player: PlayerInfo) => {
     try {
-      // Request fullscreen immediately on user gesture so phone screen locks
-      try {
-        const el = document.documentElement as any;
-        if (!document.fullscreenElement) {
-          if (el.requestFullscreen) {
-            await el.requestFullscreen({ navigationUI: 'hide' });
-          } else if (el.webkitRequestFullscreen) {
-            await el.webkitRequestFullscreen();
-          }
-        }
-      } catch {
-        // ignore if unsupported
-      }
-
       // Clear any previous Pos article locks so new session starts fresh
       ['pos_1', 'pos_2', 'pos_3', 'pos_4', 'pos_5'].forEach((id) => {
         localStorage.removeItem(`sigundul_article_locked_${id}`);
@@ -189,7 +185,7 @@ export default function App() {
         totalPos: data.session.route.length,
         id: firstLocId,
         code: firstLocConfig?.code || data.currentStation.code,
-        name: sets.hintMode === 'easy' ? firstLocConfig?.name : undefined,
+        name: firstLocConfig?.name,
         hint: firstLocConfig?.hint || data.currentStation.hint,
         isFinal: firstLocConfig?.isFinal || data.currentStation.isFinal,
         story: firstLocConfig?.story || data.currentStation.story,
@@ -205,18 +201,6 @@ export default function App() {
 
   // Resume active session
   const handleResumeSession = async () => {
-    try {
-      const el = document.documentElement as any;
-      if (!document.fullscreenElement) {
-        if (el.requestFullscreen) {
-          await el.requestFullscreen({ navigationUI: 'hide' });
-        } else if (el.webkitRequestFullscreen) {
-          await el.webkitRequestFullscreen();
-        }
-      }
-    } catch {
-      // ignore
-    }
     setView('adventure');
   };
 
@@ -352,7 +336,7 @@ export default function App() {
         totalPos: session.route.length,
         id: nextLocId,
         code: nextLocConfig?.code || res.nextStation.code,
-        name: settings?.hintMode === 'easy' ? nextLocConfig?.name : undefined,
+        name: nextLocConfig?.name || res.nextStation.name,
         hint: nextLocConfig?.hint || res.nextStation.hint,
         isFinal: isNextFinal,
         story: nextLocConfig?.story || res.nextStation.story,
@@ -468,40 +452,26 @@ export default function App() {
     currentStation?.story ||
     locations.find((l) => l.id === currentLocId)?.story;
 
-  const isAdventureLocked = view === 'adventure' && session?.status === 'active';
+  const isAdventureLocked = false;
 
   return (
     <div className="min-h-screen flex flex-col bg-amber-50/50">
       {/* Fullscreen Initial Splash Screen */}
       {showSplash && <SplashScreen onEnter={() => setShowSplash(false)} />}
 
-      {/* Anti-Cheat Screen Lock & Fullscreen Guard */}
-      <ScreenLockGuard
-        isActiveAdventure={isAdventureLocked}
-        isScannerOpen={isScannerOpen}
-        session={session}
-        currentPosCode={currentStation?.code}
-        onLockTriggered={handleLockTriggered}
-        onUnlockByTeacher={handleUnlockScreenByTeacher}
-        onResetByTeacher={handleResetSessionByTeacher}
-      />
-
       {/* Top Navigation */}
       <Navbar
         onGoHome={() => {
-          if (isAdventureLocked) return;
           setView('home');
         }}
         onOpenLeaderboard={() => {
-          if (isAdventureLocked) return;
           setView('leaderboard');
         }}
         onOpenAdmin={() => setView('admin')}
         onShowSplash={() => {
-          if (isAdventureLocked) return;
           setShowSplash(true);
         }}
-        isAdventureLocked={isAdventureLocked}
+        isAdventureLocked={false}
       />
 
       {/* Main Content Area */}
