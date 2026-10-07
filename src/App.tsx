@@ -172,9 +172,28 @@ export default function App() {
         localStorage.removeItem(`sigundul_article_locked_${id}`);
       });
 
-      const data = await gameService.startGame(player);
+      const [locs, sets, data] = await Promise.all([
+        gameService.getLocations(),
+        gameService.getSettings(),
+        gameService.startGame(player),
+      ]);
+      setLocations(locs);
+      setSettings(sets);
+
+      const firstLocId = data.session.route[data.session.currentPosIndex];
+      const firstLocConfig = locs.find((l) => l.id === firstLocId);
+
       setSession(data.session);
-      setCurrentStation(data.currentStation);
+      setCurrentStation({
+        posNumber: data.session.currentPosIndex + 1,
+        totalPos: data.session.route.length,
+        id: firstLocId,
+        code: firstLocConfig?.code || data.currentStation.code,
+        name: sets.hintMode === 'easy' ? firstLocConfig?.name : undefined,
+        hint: firstLocConfig?.hint || data.currentStation.hint,
+        isFinal: firstLocConfig?.isFinal || data.currentStation.isFinal,
+        story: firstLocConfig?.story || data.currentStation.story,
+      });
       setCurrentStationQuestions([]);
       setCurrentQuestionIndex(0);
       setView('adventure');
@@ -303,10 +322,10 @@ export default function App() {
         );
         setVictorySummary({
           summary: finalRes.summary,
-          treasureCode: finalRes.treasureCode || 'SIGUNDUL-ILMU-TUMBUHAN',
+          treasureCode: finalRes.treasureCode || 'DETEKTIF-IPAS-MANUSIA',
           teacherMessage:
             finalRes.teacherMessage ||
-            'Selamat! Kamu telah menyelesaikan seluruh 5 Pos Perkembangbiakan Tumbuhan! Serahkan buku catatanmu kepada Bapak/Ibu Guru.',
+            'Selamat! Kamu telah menyelesaikan seluruh 5 Pos Siklus Hidup & Tumbuh Kembang Manusia! Serahkan buku catatanmu kepada Bapak/Ibu Guru.',
         });
         setView('victory');
         gameService.clearSession();
@@ -316,22 +335,51 @@ export default function App() {
       return;
     }
 
-    if (res.posCompleted && res.nextStation) {
+    if (res.posCompleted && res.nextStation && session) {
       // Pos finished! Show celebration and unlocked next station clue
       sounds.playPosComplete();
-      const justFinishedCode = currentStation?.code || 'POS';
-      const isNextFinal = res.nextStation.isFinal;
+      const prevLocId = session.route[session.currentPosIndex];
+      const prevLocConfig = locations.find((l) => l.id === prevLocId);
+      const justFinishedCode = prevLocConfig?.code || currentStation?.code || 'POS';
+
+      const nextIndex = session.currentPosIndex + 1;
+      const nextLocId = session.route[nextIndex] || res.nextStation.id;
+      const nextLocConfig = locations.find((l) => l.id === nextLocId);
+      const isNextFinal = nextLocConfig?.isFinal ?? res.nextStation.isFinal;
+
+      const synchronizedNextStation = {
+        posNumber: nextIndex + 1,
+        totalPos: session.route.length,
+        id: nextLocId,
+        code: nextLocConfig?.code || res.nextStation.code,
+        name: settings?.hintMode === 'easy' ? nextLocConfig?.name : undefined,
+        hint: nextLocConfig?.hint || res.nextStation.hint,
+        isFinal: isNextFinal,
+        story: nextLocConfig?.story || res.nextStation.story,
+      };
+
+      const updatedSession: GameSession = {
+        ...session,
+        currentPosIndex: nextIndex,
+        posProgress: {
+          ...session.posProgress,
+          [prevLocId]: {
+            ...session.posProgress[prevLocId],
+            completed: true,
+          },
+        },
+      };
+
+      setSession(updatedSession);
+      gameService.saveSession(updatedSession);
 
       setCompletedPosInfo({
         completedPosCode: justFinishedCode,
-        nextStation: res.nextStation,
+        nextStation: synchronizedNextStation,
       });
 
       // Update current station state for next round
-      setCurrentStation({
-        ...res.nextStation,
-        hint: res.nextStation.hint,
-      });
+      setCurrentStation(synchronizedNextStation);
       setCurrentStationQuestions([]);
       setCurrentQuestionIndex(0);
 
@@ -556,8 +604,28 @@ export default function App() {
         {/* --- VIEW: TEACHER / ADMIN DASHBOARD --- */}
         {view === 'admin' && (
           <AdminDashboard
-            onBack={() => {
+            onBack={async () => {
+              const [locs, sets] = await Promise.all([
+                gameService.getLocations(),
+                gameService.getSettings(),
+              ]);
+              setLocations(locs);
+              setSettings(sets);
               if (session && session.status === 'active') {
+                const activeLocId = session.route[session.currentPosIndex];
+                const activeLocConfig = locs.find((l) => l.id === activeLocId);
+                if (activeLocConfig) {
+                  setCurrentStation({
+                    posNumber: session.currentPosIndex + 1,
+                    totalPos: session.route.length,
+                    id: activeLocId,
+                    code: activeLocConfig.code,
+                    name: sets.hintMode === 'easy' ? activeLocConfig.name : undefined,
+                    hint: activeLocConfig.hint,
+                    isFinal: activeLocConfig.isFinal,
+                    story: activeLocConfig.story,
+                  });
+                }
                 setView('adventure');
                 return;
               }

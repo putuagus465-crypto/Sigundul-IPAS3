@@ -55,9 +55,9 @@ export const StoryRetellingView: React.FC<StoryRetellingViewProps> = ({
     }
 
     const template =
-      `Di Pos 1 (Gudang Sekolah), manusia mengalami pertumbuhan fisik (tinggi dan berat bertambah yang bisa diukur dengan angka) serta perkembangan kemampuan fungsi tubuh (berbicara, berjalan, dan berpikir mandiri).\n\n` +
-      `Di Pos 2 (Pohon Jambu), Pos 3 (Pohon Cempaka), dan Pos 4 (Lorong Parkir), tahapan siklus hidup manusia diawali dari bayi (0-1 tahun minum ASI dan menangis), balita (1-5 tahun gigi susu tumbuh dan belajar jalan), anak-anak (6-11 tahun gigi susu diganti gigi tetap), remaja (mengalami pubertas dengan ciri jakun/suara berat pada laki-laki dan menstruasi pada perempuan), dewasa (tinggi badan terhenti dan organ matang), hingga lanjut usia (lansia dengan rambut beruban dan kulit keriput).\n\n` +
-      `Di Pos 5 (Di Kelas), pertumbuhan dan perkembangan manusia sangat dipengaruhi oleh makanan bergizi seimbang (protein zat pembangun tubuh, karbohidrat sumber energi, vitamin-mineral), tidur cukup 8-10 jam untuk pembentukan hormon pertumbuhan, olahraga teratur, serta menjaga kebersihan diri.`;
+      `Di Pos 1 (Pohon Jambu), manusia mengalami pertumbuhan fisik (tinggi dan berat bertambah yang diukur dengan meteran dan timbangan) serta perkembangan kemampuan gerak, bicara, dan kemandirian.\n\n` +
+      `Di Pos 2 (Kopdes), Pos 3 (Perpustakaan), dan Pos 4 (Kantin), siklus hidup manusia diawali dari bayi (0-1 tahun minum ASI dan menangis), balita (1-5 tahun tumbuh gigi susu dan dipantau di Posyandu), anak-anak (6-11 tahun gigi susu diganti gigi tetap), remaja (pubertas dengan ciri jakun/suara berat pada laki-laki dan menstruasi pada perempuan), dewasa (tinggi badan terhenti), hingga lansia (rambut beruban dan kulit keriput).\n\n` +
+      `Di Pos 5 (Guru Kelas), agar tumbuh sehat dan kuat kita memerlukan makanan bergizi seimbang (karbohidrat sumber tenaga, protein zat pembangun, vitamin dan mineral), tidur cukup 8-10 jam, rajin olahraga, dan menjaga kebersihan diri.`;
     setText(template);
   };
 
@@ -86,13 +86,13 @@ export const StoryRetellingView: React.FC<StoryRetellingViewProps> = ({
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl border-4 border-yellow-300 text-center relative overflow-hidden">
         <div className="inline-flex items-center gap-2 bg-yellow-400 text-amber-950 font-black px-4 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-md mb-3">
-          <Sparkles className="w-4 h-4 text-amber-900" /> TUGAS AKHIR DI KELAS (POS 5)
+          <Sparkles className="w-4 h-4 text-amber-900" /> TUGAS AKHIR DI GURU KELAS (POS 5)
         </div>
         <h1 className="text-2xl sm:text-4xl font-black font-display tracking-tight text-yellow-100">
-          Merangkum Catatan Perkembangbiakan Tumbuhan
+          Merangkum Catatan Siklus Hidup &amp; Tumbuh Kembang Manusia
         </h1>
         <p className="text-sm sm:text-base font-medium text-amber-100 mt-2 max-w-xl mx-auto leading-relaxed">
-          Hebat! Kamu telah menuntaskan seluruh soal di 5 Pos. Sekarang, tuliskanlah kembali rangkuman catatan pentingmu tentang <strong>Perkembangbiakan pada Tumbuhan dari Pos 1 hingga Pos 5</strong>!
+          Hebat! Kamu telah menuntaskan seluruh soal di 5 Pos. Sekarang, tuliskanlah kembali rangkuman catatan pentingmu tentang <strong>Siklus Hidup serta Tumbuh dan Kembang Manusia dari Pos 1 hingga Pos 5</strong>!
         </p>
 
         <div className="mt-4 inline-flex items-center gap-2 bg-black/20 px-3.5 py-1 rounded-full text-xs font-bold text-yellow-200">
@@ -161,21 +161,21 @@ export const StoryRetellingView: React.FC<StoryRetellingViewProps> = ({
 
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
           <div className="bg-white/80 p-3 rounded-2xl border border-amber-200">
-            <div className="font-black text-amber-900 mb-1">1. Pos 1 &amp; Pos 3 (Generatif)</div>
+            <div className="font-black text-amber-900 mb-1">1. Pos 1 (Pohon Jambu)</div>
             <p className="text-slate-600">
-              Tuliskan bagian-bagian bunga (benang sari &amp; putik), penyerbukan, pembuahan, serta 4 jenis penyerbukan.
+              Tuliskan perbedaan pertumbuhan (ukuran fisik tinggi &amp; berat) dan perkembangan (kemampuan gerak, bicara, &amp; mandiri).
             </p>
           </div>
           <div className="bg-white/80 p-3 rounded-2xl border border-amber-200">
-            <div className="font-black text-amber-900 mb-1">2. Pos 2 &amp; Pos 4 (Vegetatif)</div>
+            <div className="font-black text-amber-900 mb-1">2. Pos 2, 3, &amp; 4 (Kopdes, Perpustakaan, Kantin)</div>
             <p className="text-slate-600">
-              Tuliskan contoh vegetatif buatan (mencangkok jambu, stek, okulasi) dan vegetatif alami (tunas, umbi, rhizoma, geragih, spora).
+              Tuliskan tahapan siklus hidup manusia: bayi, balita, anak-anak, remaja (pubertas), dewasa, hingga lansia.
             </p>
           </div>
           <div className="bg-white/80 p-3 rounded-2xl border border-amber-200">
-            <div className="font-black text-amber-900 mb-1">3. Pos 5 (Pelestarian)</div>
+            <div className="font-black text-amber-900 mb-1">3. Pos 5 (Guru Kelas)</div>
             <p className="text-slate-600">
-              Tuliskan cara penyebaran biji (angin, air, hewan) serta pelestarian tumbuhan In-Situ dan Ex-Situ.
+              Tuliskan rahasia tumbuh sehat: makanan bergizi seimbang (karbohidrat, protein, sayur-buah), tidur 8–10 jam, dan olahraga.
             </p>
           </div>
         </div>
@@ -185,9 +185,16 @@ export const StoryRetellingView: React.FC<StoryRetellingViewProps> = ({
       <form onSubmit={handleSubmit} className="bg-white rounded-3xl border-2 border-amber-300 p-5 sm:p-7 shadow-lg space-y-4">
         <div className="flex items-center justify-between">
           <label htmlFor="retelling-input" className="block text-sm sm:text-base font-black text-amber-950">
-            Tuliskan Ringkasan Alur Ceritamu di Sini:
+            Tuliskan Ringkasan Alur Materi di Sini:
           </label>
           <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleInsertScaffold}
+              className="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 transition-colors cursor-pointer"
+            >
+              ✨ Gunakan Kerangka Bantuan
+            </button>
             <span
               className={`text-xs font-bold px-2.5 py-1 rounded-full ${
                 wordCount >= minWords
@@ -207,7 +214,7 @@ export const StoryRetellingView: React.FC<StoryRetellingViewProps> = ({
             setText(e.target.value);
             if (validationError) setValidationError(null);
           }}
-          placeholder="Mulai ceritamu di sini... Contoh: Cerita ini bermula ketika Sita dan Bima menemukan buku bersampul kayu di perpustakaan sekolah. Di dalamnya terdapat peta kain sutra kuno yang mengarahkan mereka..."
+          placeholder="Mulai rangkumanmu di sini... Contoh: Di Pos 1 (Pohon Jambu), kami belajar perbedaan pertumbuhan tinggi dan berat badan dengan perkembangan kemampuan tubuh. Lalu di Pos 2 (Kopdes), Pos 3 (Perpustakaan), dan Pos 4 (Kantin), kami mempelajari urutan siklus hidup manusia..."
           rows={9}
           className="w-full p-4 rounded-2xl border-2 border-amber-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-200 text-sm sm:text-base leading-relaxed text-slate-800 outline-hidden transition-all resize-y placeholder:text-slate-400"
         />

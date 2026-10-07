@@ -98,6 +98,13 @@ export const AdventureDashboard: React.FC<Props> = ({
   const isQrVerified = currentPosProgress?.qrVerified || false;
   const currentLocConfig = locations.find(l => l.id === currentLocId);
 
+  const activePosNumber = session.currentPosIndex + 1;
+  const activeTotalPos = session.route.length;
+  const activeCode = currentLocConfig?.code || currentStation.code || `POS ${activePosNumber}`;
+  const activeHint = currentLocConfig?.hint || currentStation.hint || '';
+  const activeTitle = currentLocConfig?.story?.title || activeCode;
+  const activeIsFinal = currentLocConfig?.isFinal ?? currentStation.isFinal;
+
   return (
     <div className="space-y-3 sm:space-y-4">
       {/* Top Floating Dashboard Bar (Smartphone-optimized) */}
@@ -154,7 +161,7 @@ export const AdventureDashboard: React.FC<Props> = ({
             <div>
               <div className="text-[9px] font-bold text-emerald-800 uppercase leading-none">Tahap</div>
               <div className="text-xs sm:text-sm font-black text-emerald-950 tabular-nums leading-tight">
-                {session.currentPosIndex + 1}/{session.route.length}
+                {activePosNumber}/{activeTotalPos}
               </div>
             </div>
           </div>
@@ -190,14 +197,14 @@ export const AdventureDashboard: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* Sequential Route Progression Bar (Pos 1 to Pos 5) */}
+      {/* Route Progression Bar */}
       <div className="bg-white/90 rounded-2xl p-2.5 sm:p-3 border-2 border-amber-200 shadow-xs">
         <div className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between gap-2">
-          <span className="truncate">Rute Pos Berurutan (Pos 1 ➔ Pos 5)</span>
+          <span className="truncate">Rute Pos Kelompok (Pos 1–4 Acak)</span>
           <span className="text-[11px] text-amber-700 font-extrabold shrink-0">
             {session.currentPosIndex === 4
               ? 'Tahap 5: Pos 5 (Final)'
-              : `Tahap ${session.currentPosIndex + 1}/5: Cari ${currentStation.code}`}
+              : `Tahap ${activePosNumber}/${activeTotalPos}: Cari ${activeCode}`}
           </span>
         </div>
 
@@ -231,12 +238,20 @@ export const AdventureDashboard: React.FC<Props> = ({
                   ) : (
                     <Lock className="w-3.5 h-3.5" />
                   )}
-                  <span>
-                    {isFinalPos ? 'Pos 5' : revealedCode}
+                  <span className="hidden sm:inline">
+                    {isFinalPos
+                      ? 'Pos 5 (Final)'
+                      : isCompleted || isCurrent
+                      ? revealedCode
+                      : `Tahap ${idx + 1}`}
                   </span>
                 </div>
-                <span className="text-[9px] font-bold mt-0.5 truncate max-w-full">
-                  {locObj?.name ? locObj.name.split(' ')[0] : `Pos ${idx + 1}`}
+                <span className="text-[10px] sm:hidden font-bold mt-0.5">
+                  {isFinalPos
+                    ? 'Pos 5'
+                    : isCompleted || isCurrent
+                    ? revealedCode
+                    : `Tahap ${idx + 1}`}
                 </span>
               </div>
             );
@@ -253,30 +268,30 @@ export const AdventureDashboard: React.FC<Props> = ({
                 <span className="p-2 sm:p-2.5 bg-white/20 rounded-2xl text-xl sm:text-2xl shrink-0">🧭</span>
                 <div>
                   <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-amber-200 block">
-                    TUJUAN KE-{currentStation.posNumber} DARI {currentStation.totalPos} &bull; CARI {currentStation.code}
+                    TAHAP KE-{activePosNumber} DARI {activeTotalPos} &bull; CARI {activeCode}
                   </span>
                   <h3 className="text-lg sm:text-2xl font-black font-display tracking-wide leading-tight">
-                    {currentLocConfig?.story?.title || currentStation.code}
+                    {activeTitle}
                   </h3>
                 </div>
               </div>
 
-              {currentStation.isFinal && (
+              {activeIsFinal && (
                 <span className="bg-yellow-400 text-amber-950 font-black text-[10px] sm:text-xs px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1 shrink-0">
                   <Sparkles className="w-3 h-3" /> FINAL
                 </span>
               )}
             </div>
 
-            {/* Clue/Riddle Box (Only description shown, no specific location name) */}
+            {/* Clue/Riddle Box */}
             <div className="bg-white/95 text-slate-800 rounded-2xl p-3.5 sm:p-4 shadow-inner space-y-2 border-2 border-amber-300">
               <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800 uppercase tracking-wider">
                 <Compass className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Deskripsi Petunjuk Lokasi {currentStation.code}:</span>
+                <span>Deskripsi Petunjuk Lokasi {activeCode}:</span>
               </div>
 
               <p className="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed italic bg-amber-50/70 p-3 rounded-xl border border-amber-200">
-                &ldquo;{currentStation.hint}&rdquo;
+                &ldquo;{activeHint}&rdquo;
               </p>
 
               <div className="text-[11px] sm:text-xs text-slate-500 flex items-start gap-1.5 pt-0.5">
@@ -296,7 +311,7 @@ export const AdventureDashboard: React.FC<Props> = ({
               className="w-full py-3.5 sm:py-4 bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500 text-amber-950 font-black text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all active:scale-98 flex items-center justify-center gap-2.5 uppercase tracking-wide font-display cursor-pointer"
             >
               <QrCode className="w-5 h-5 sm:w-6 sm:h-6 text-amber-950 shrink-0" />
-              <span>SCAN QR CODE {currentStation.code}</span>
+              <span>SCAN QR CODE {activeCode}</span>
             </button>
           </div>
 
@@ -310,7 +325,7 @@ export const AdventureDashboard: React.FC<Props> = ({
               className="w-full py-3.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-amber-950 font-black text-sm rounded-2xl shadow-lg border-2 border-amber-600 flex items-center justify-center gap-2 uppercase tracking-wide font-display active:scale-98 cursor-pointer"
             >
               <QrCode className="w-5 h-5 text-amber-950 shrink-0" />
-              <span>SCAN QR CODE {currentStation.code}</span>
+              <span>SCAN QR CODE {activeCode}</span>
             </button>
           </div>
         </>

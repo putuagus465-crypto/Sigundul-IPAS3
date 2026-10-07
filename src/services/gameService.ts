@@ -14,11 +14,11 @@ import {
   DEFAULT_QUESTIONS,
 } from '../data/defaultData';
 
-const LOCAL_SESSION_KEY = 'sigundul_ipas_v2_session';
-const LOCAL_SETTINGS_KEY = 'sigundul_ipas_v2_settings';
-const LOCAL_LOCATIONS_KEY = 'sigundul_ipas_v2_locations';
-const LOCAL_QUESTIONS_KEY = 'sigundul_ipas_v2_questions';
-const LOCAL_LEADERBOARD_KEY = 'sigundul_ipas_v2_leaderboard';
+const LOCAL_SESSION_KEY = 'sigundul_ipas_v3_session';
+const LOCAL_SETTINGS_KEY = 'sigundul_ipas_v3_settings';
+const LOCAL_LOCATIONS_KEY = 'sigundul_ipas_v3_locations';
+const LOCAL_QUESTIONS_KEY = 'sigundul_ipas_v3_questions';
+const LOCAL_LEADERBOARD_KEY = 'sigundul_ipas_v3_leaderboard';
 
 // Helper to shuffle array
 function shuffleArray<T>(array: T[]): T[] {
@@ -253,10 +253,15 @@ class GameService {
     const locations = await this.getLocations();
     const settings = await this.getSettings();
 
-    // Sequential route from Pos 1 to Pos 5 to match exact chapters and descriptions
+    // Randomize Pos 1 to Pos 4 per device/group, keeping Pos 5 fixed as the Final Pos
     const activeLocs = locations.filter(l => l.isActive);
-    const sortedLocs = [...activeLocs].sort((a, b) => a.story.chapterNumber - b.story.chapterNumber);
-    const route = sortedLocs.map(l => l.id);
+    const nonFinalLocs = shuffleArray(
+      activeLocs.filter(l => !l.isFinal)
+    );
+    const finalLocs = activeLocs
+      .filter(l => l.isFinal)
+      .sort((a, b) => a.story.chapterNumber - b.story.chapterNumber);
+    const route = [...nonFinalLocs, ...finalLocs].map(l => l.id);
 
     const gameId = `LITERASI-${Date.now().toString().slice(-6)}-${Math.floor(100 + Math.random() * 900)}`;
     const posProgress: GameSession['posProgress'] = {};
@@ -458,7 +463,6 @@ class GameService {
         const allCompleted = nextIndex >= currentSession.route.length;
 
         if (allCompleted) {
-          currentSession.currentPosIndex = nextIndex;
           currentSession.endTime = Date.now();
           currentSession.score += settings.pointsGameBonus;
           localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(currentSession));
@@ -477,7 +481,6 @@ class GameService {
           };
         }
 
-        currentSession.currentPosIndex = nextIndex;
         localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(currentSession));
 
         const nextLocId = currentSession.route[nextIndex];
